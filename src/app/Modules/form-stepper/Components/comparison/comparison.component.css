@@ -1,0 +1,28 @@
+.mycard {
+  background-color: #fff;
+}
+.comprehensive label {
+  font-weight: bold;
+  color: var(--appColor1);
+}
+.comprehensive .card-header {
+  padding: 15px 15px;
+  font-weight: 600;
+  font-size: 18px;
+  border-bottom: 1px solid #ccc;
+}
+#accordion .card-header {
+  background-color: #ccc;
+}
+#accordion .card-body {
+  background-color: #fff;
+}
+#accordion .card-body .list-group-flush .list-group-item {
+  display: flex;
+  justify-content: space-between;
+}
+a.collapsed,
+a.collapsed:focus {
+  display: block;
+  text-decoration: none;
+}

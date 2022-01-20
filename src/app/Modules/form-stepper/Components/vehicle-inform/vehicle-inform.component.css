@@ -1,0 +1,6 @@
+.list-group-horizontal .list-group-item {
+  cursor: pointer;
+}
+.mat-slider-horizontal {
+  min-width: 100%;
+}

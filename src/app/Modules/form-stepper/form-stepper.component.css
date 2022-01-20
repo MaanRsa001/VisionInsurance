@@ -1,0 +1,7 @@
+.bg-container {
+  padding: 310px 20px 14px 10px;
+  background-image: url("../../../assets/images/car-bg_png.png");
+  background-position: left top;
+  background-size: 420px;
+  background-repeat: no-repeat;
+}

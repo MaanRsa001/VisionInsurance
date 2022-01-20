@@ -1,0 +1,131 @@
+<form [formGroup]="vehicleInfoForm">
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="mb-3 mt-3">
+                <label class="form-label mb-2 fw-bold">Geographical Extension</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                            color="#ea5d25" class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg"
+                            style="color: rgb(234, 93, 37);">
+                            <path
+                                d="m12 17 1-2V9.858c1.721-.447 3-2 3-3.858 0-2.206-1.794-4-4-4S8 3.794 8 6c0 1.858 1.279 3.411 3 3.858V15l1 2zM10 6c0-1.103.897-2 2-2s2 .897 2 2-.897 2-2 2-2-.897-2-2z">
+                            </path>
+                            <path
+                                d="m16.267 10.563-.533 1.928C18.325 13.207 20 14.584 20 16c0 1.892-3.285 4-8 4s-8-2.108-8-4c0-1.416 1.675-2.793 4.267-3.51l-.533-1.928C4.197 11.54 2 13.623 2 16c0 3.364 4.393 6 10 6s10-2.636 10-6c0-2.377-2.197-4.46-5.733-5.437z">
+                            </path>
+                        </svg>
+                    </span>
+                    <ng-select class="form-control form-control-lg" [items]="cities" bindLabel="name"
+                        placeholder="Geographical Extension">
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="mb-3 mt-3">
+                <label class="form-label mb-2 fw-bold">Tonne</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"
+                            color="#ea5d25" class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg"
+                            style="color: rgb(234, 93, 37);">
+                            <path
+                                d="M3 0h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3zm0 8h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3z">
+                            </path>
+                        </svg>
+                    </span>
+                    <input type="text" class="form-control form-control-lg" placeholder="Allowed weight in tonne">
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="mb-3 mt-3">
+                <label class="form-label mb-2 fw-bold">Mobile Number</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                            color="#ea5d25" class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg"
+                            style="color: rgb(234, 93, 37);">
+                            <path
+                                d="M16.75 2h-10c-1.103 0-2 .897-2 2v16c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zm-10 18V4h10l.002 16H6.75z">
+                            </path>
+                            <circle cx="11.75" cy="18" r="1"></circle>
+                        </svg>
+                    </span>
+                    <input type="text" class="form-control form-control-lg" placeholder="Mobile Number">
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="mb-3 mt-3">
+                <label class="form-label mb-2 fw-bold">NCD</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                            color="#ea5d25" class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg"
+                            style="color: rgb(234, 93, 37);">
+                            <path
+                                d="m12 17 1-2V9.858c1.721-.447 3-2 3-3.858 0-2.206-1.794-4-4-4S8 3.794 8 6c0 1.858 1.279 3.411 3 3.858V15l1 2zM10 6c0-1.103.897-2 2-2s2 .897 2 2-.897 2-2 2-2-.897-2-2z">
+                            </path>
+                            <path
+                                d="m16.267 10.563-.533 1.928C18.325 13.207 20 14.584 20 16c0 1.892-3.285 4-8 4s-8-2.108-8-4c0-1.416 1.675-2.793 4.267-3.51l-.533-1.928C4.197 11.54 2 13.623 2 16c0 3.364 4.393 6 10 6s10-2.636 10-6c0-2.377-2.197-4.46-5.733-5.437z">
+                            </path>
+                        </svg>
+                    </span>
+                    <input type="text" class="form-control form-control-lg" placeholder="NCD">
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="mb-3 mt-3">
+                <label for="customRange" class="form-label mb-2 fw-bold">Sum Insured</label>
+                <mat-slider class="example-margin" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min"
+                    [step]="step" [thumbLabel]="thumbLabel" [tickInterval]="getSliderTickInterval()"
+                    [vertical]="vertical" aria-labelledby="example-name-label">
+                </mat-slider>
+                <div class="d-flex justify-content-between">
+                    <div>OMR 5000</div>
+                    <div>OMR 40000</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="mb-3 mt-3">
+                <label class="form-label mb-2 fw-bold">Is your vehicle imported</label>
+                <ul class="list-group list-group-horizontal">
+                    <li [class.active]="isVehicleImported == 'Y'" class="list-group-item"
+                        (click)="isVehicleImported = 'Y'">Yes</li>
+                    <li [class.active]="isVehicleImported == 'N'" class="list-group-item"
+                        (click)="isVehicleImported = 'N'">No</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="mb-3 mt-3">
+                <label class="form-label mb-2 fw-bold">Is your vehicle owned by a company</label>
+                <ul class="list-group list-group-horizontal">
+                    <li [class.active]="isVehicleOwned == 'Y'" class="list-group-item" (click)="isVehicleOwned = 'Y'">
+                        Yes</li>
+                    <li [class.active]="isVehicleOwned == 'N'" class="list-group-item" (click)="isVehicleOwned = 'N'">No
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="mb-3 mt-3">
+                <label class="form-label mb-2 fw-bold">Visa Status</label>
+                <ul class="list-group list-group-horizontal">
+                    <li [class.active]="visaStatus == 'Omani'" class="list-group-item" (click)="visaStatus = 'Omani'">
+                        Omani
+                    </li>
+                    <li [class.active]="visaStatus == 'Expat'" class="list-group-item" (click)="visaStatus = 'Expat'">
+                        Expat
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</form>
