@@ -19,11 +19,20 @@ export class FormStepperService {
   public Token: any;
   constructor(private http: HttpClient, private router: Router) {}
 
-  getToken() {}
+  getToken() {
+    // this.authService.isloggedToken.subscribe((event: any) => {
+    //   if (event != undefined && event != '' && event != null) {
+    //     this.Token = event;
+    //   } else {
+    //     this.Token = sessionStorage.getItem('UserToken');
+    //   }
+    // });
+    return 'dmlzaW9ubW90b3I6dmlzaW9ubW90b3JAMTIzIw==';
+  }
 
   async onGetLossType(UrlLink: any): Promise<Observable<any[]>> {
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Bearer ' + this.getToken());
+    headers = headers.append('Authorization', 'Basic ' + this.getToken());
     return await this.http
       .get<any>(this.ApiUrl + UrlLink, { headers: headers })
       .pipe(retry(1), catchError(this.handleError));
@@ -31,7 +40,7 @@ export class FormStepperService {
   async onGetSurveyorList(UrlLink: any): Promise<Observable<any[]>> {
     console.log(UrlLink);
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Bearer ' + this.getToken());
+    headers = headers.append('Authorization', 'Basic ' + this.getToken());
     return await this.http
       .get<any>(this.ApiUrl + UrlLink, { headers: headers })
       .pipe(retry(1), catchError(this.handleError));
@@ -42,7 +51,7 @@ export class FormStepperService {
     ReqObj: any
   ): Promise<Observable<any[]>> {
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Bearer ' + this.getToken());
+    headers = headers.append('Authorization', 'Basic ' + this.getToken());
     return await this.http
       .post<any>(this.ApiUrl + UrlLink, ReqObj, { headers: headers })
       .pipe(retry(1), catchError(this.handleError));
@@ -50,7 +59,7 @@ export class FormStepperService {
   async onGetMethodAsync(UrlLink: any): Promise<Observable<any[]>> {
     console.log(UrlLink);
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Bearer ' + this.getToken());
+    headers = headers.append('Authorization', 'Basic ' + this.getToken());
     return await this.http
       .get<any>(this.ApiUrl + UrlLink, { headers: headers })
       .pipe(retry(1), catchError(this.handleError));
@@ -59,7 +68,7 @@ export class FormStepperService {
   onPostMethod(UrlLink: any, ReqObj: any): Observable<any[]> {
     console.log(ReqObj);
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Bearer ' + this.getToken());
+    headers = headers.append('Authorization', 'Basic ' + this.getToken());
     return this.http
       .post<any>(this.ApiUrl + UrlLink, ReqObj, { headers: headers })
       .pipe(retry(1), catchError(this.handleError));

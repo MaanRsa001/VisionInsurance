@@ -8,6 +8,13 @@ import { FormGroup } from '@angular/forms';
 })
 export class VehicleInformComponent implements OnInit {
   @Input('vehicleInfoForm') vehicleInfoForm!: FormGroup;
+  @Input('geoGraphiclaList') geoGraphiclaList:any;
+  @Input('TonneList') TonneList:any;
+  @Input('NcdList') NcdList:any;
+
+
+
+
   public isVehicleImported: any;
   public isVehicleOwned: any;
   public visaStatus: any;
@@ -23,13 +30,7 @@ export class VehicleInformComponent implements OnInit {
   vertical = false;
   tickInterval = 1;
   selectedCity: any;
-  cities = [
-    { id: 1, name: 'Vilnius' },
-    { id: 2, name: 'Kaunas' },
-    { id: 3, name: 'Pavilnys', disabled: true },
-    { id: 4, name: 'Pabradė' },
-    { id: 5, name: 'Klaipėda' },
-  ];
+
   constructor() {}
 
   ngOnInit(): void {}

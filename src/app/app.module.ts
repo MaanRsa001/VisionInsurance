@@ -1,3 +1,4 @@
+import { ErrorService } from './Errors/error.service';
 import { MaterialModule } from './Shared/material/material.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,6 +14,8 @@ import { FooterComponent } from './Core/Body/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormStepperComponent } from './Modules/form-stepper/form-stepper.component';
 import { HomeComponent } from './Modules/home/home.component';
+import { FormStepperService } from './Modules/form-stepper/form-stepper.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,8 +33,9 @@ import { HomeComponent } from './Modules/home/home.component';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

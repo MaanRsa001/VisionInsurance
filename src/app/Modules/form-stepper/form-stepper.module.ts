@@ -1,3 +1,4 @@
+import { ErrorService } from './../../Errors/error.service';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
@@ -9,6 +10,8 @@ import { VehicleInformComponent } from './Components/vehicle-inform/vehicle-info
 import { ComparisonComponent } from './Components/comparison/comparison.component';
 import { PersonalInformComponent } from './Components/personal-inform/personal-inform.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { FormStepperService } from './form-stepper.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,9 +27,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
     MaterialModule,
     FormStepperRoutingModule,
     NgSelectModule,
+    HttpClientModule
   ],
 
-  providers: [DatePipe, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+  providers: [HttpClientModule,DatePipe, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   bootstrap: [FormStepperComponent],
 })
 export class FormStepperModule {}

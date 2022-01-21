@@ -16,7 +16,7 @@
                             </path>
                         </svg>
                     </span>
-                    <ng-select class="form-control form-control-lg" [items]="cities" bindLabel="name"
+                    <ng-select class="form-control form-control-lg" [items]="geoGraphiclaList" bindLabel="Description_en"
                         placeholder="Geographical Extension">
                     </ng-select>
                 </div>
@@ -35,7 +35,9 @@
                             </path>
                         </svg>
                     </span>
-                    <input type="text" class="form-control form-control-lg" placeholder="Allowed weight in tonne">
+                    <ng-select class="form-control form-control-lg" [items]="TonneList" bindLabel="Description_en"
+                        placeholder="Allowed weight in tonne">
+                    </ng-select>
                 </div>
             </div>
         </div>
@@ -73,7 +75,10 @@
                             </path>
                         </svg>
                     </span>
-                    <input type="text" class="form-control form-control-lg" placeholder="NCD">
+
+                    <ng-select class="form-control form-control-lg" [items]="NcdList" bindLabel="Description_en"
+                        placeholder="NCD">
+                    </ng-select>
                 </div>
             </div>
         </div>
