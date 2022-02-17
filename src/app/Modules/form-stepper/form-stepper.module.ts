@@ -26,7 +26,7 @@ import { OtpComponent } from './Components/otp/otp.component';
 import { CountdownModule } from 'ngx-countdown';
 import { RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings, ReCaptchaV3Service, RECAPTCHA_SETTINGS, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
 
-const RECAPTCHA_V3_STACKBLITZ_KEY = '6LfXcnkeAAAAAJhgAw9BYiNl-HZXnzEaSDCRkiaB';
+const RECAPTCHA_V3_STACKBLITZ_KEY = '6LeEi4MeAAAAAO3ued45wbIiFXVQgIDQmLFTA_lC';
 const RECAPTCHA_V2_DUMMY_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
 
 @NgModule({
