@@ -12,10 +12,9 @@ import { HomeLayoutComponent } from './Core/Layout/home-layout/home-layout.compo
 import { NavbarComponent } from './Core/Body/navbar/navbar.component';
 import { FooterComponent } from './Core/Body/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormStepperComponent } from './Modules/form-stepper/form-stepper.component';
-import { HomeComponent } from './Modules/home/home.component';
-import { FormStepperService } from './Modules/form-stepper/form-stepper.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { HttpInterceptorService } from './HttpInterceptors/http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -24,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     HomeLayoutComponent,
     NavbarComponent,
     FooterComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -33,9 +33,19 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule
   ],
-  providers: [HttpClientModule],
+  providers: [
+    HttpClientModule,
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpInterceptorService,
+    multi: true
+  }]
+  ,
+
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,7 @@
+.custom-svg{
+  height: 34px;
+  width: 34px;
+}
+.custom-svg path{
+  fill: var(--appColor2);
+}

@@ -1,0 +1,36 @@
+<h2 mat-dialog-title class="text-center">
+  <img class="w3-animate-zoom" src="./assets/images/mobile.png"> OTP Verification
+</h2>
+<mat-dialog-content class="mat-typography">
+ <form [formGroup]="otpForm">
+
+  <div class="row">
+    <div class="col-12 col-md-4 col-lg-4 col-sm-6 offset-lg-4 offset-md-4 offset-sm-3">
+      <div class="otp-box">
+        <div class="mb-3 mt-3">
+          <label class="form-label mb-2 fw-bold">Please Enter Your OTP Code {{otpDetails?.Otp}}</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">
+              <mobile-icon></mobile-icon>
+            </span>
+            <input type="text" class="form-control form-control-lg" formControlName="otp" placeholder="OTP Code" digitOnly>
+          </div>
+        </div>
+        <button type="button" class="btn vision-blue-btn mx-2" [disabled]="count" (click)="onSendOtp()">
+          Send Again <countdown #cd [config]="config" (event)="onEvent($event)"></countdown>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button type="button" class="btn vision-blue-btn mx-2" mat-dialog-close>
+    Close
+  </button>
+  <button type="button" class="btn vision-blue-btn mx-2" (click)="onVerifyOtp()" [disabled]="!otpForm.valid">
+    Procced
+  </button>
+</mat-dialog-actions>

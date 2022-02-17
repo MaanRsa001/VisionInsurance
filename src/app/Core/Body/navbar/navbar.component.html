@@ -1,12 +1,16 @@
-<mat-toolbar class="mat-tool-bar position-fixed vision-tool-bar">
-    <mat-toolbar-row>
-        <span>
-            <img src="../../../../assets/images/vision-logo.png" width="200">
-        </span>
-        <span class="example-spacer"></span>
-    </mat-toolbar-row>
+<mat-toolbar class="mat-tool-bar position-fixed vision-tool-bar bg-light">
+  <mat-toolbar-row>
+    <span>
+      <img src="./assets/images/vision-logo.png" width="200">
+    </span>
+    <span class="example-spacer"></span>
+  </mat-toolbar-row>
 </mat-toolbar>
 
-<div class="main-content">
-    <router-outlet></router-outlet>
+<div class="row">
+  <div class="col-12 mx-2" style="margin-top: 4rem;">
+    <div class="main-content p-2">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>

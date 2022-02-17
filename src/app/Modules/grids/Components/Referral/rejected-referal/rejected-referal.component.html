@@ -1,0 +1,11 @@
+<app-grid-navbar></app-grid-navbar>
+<div class="container mt-5">
+  <div class="card table-card">
+    <div class="card-header">Rejected Referral</div>
+    <div class="card-body">
+         <ng-container *ngIf='tableData'>
+         <app-angular-datatable [tableData]="tableData"></app-angular-datatable>
+        </ng-container>
+    </div>
+  </div>
+</div>

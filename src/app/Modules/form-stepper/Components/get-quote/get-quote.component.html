@@ -1,0 +1,100 @@
+<form [formGroup]="getQuoteForm">
+  <div class="">
+    <h2 class="my-2 fw-bold">Get Quote</h2>
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+        <div class="mb-3 mt-3">
+          <label class="form-label mb-2 fw-bold">Plate Char<span class="text-danger">*</span></label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">
+              <plate-icon></plate-icon>
+            </span>
+            <ng-select class="form-control form-control-lg" [items]="platecharList"  bindValue="Code" bindLabel="Description_en"
+              placeholder="Plate Char" formControlName="plateChar">
+            </ng-select>
+          </div>
+        </div>
+        <div *ngIf="(f.plateChar.errors && submitted) || (!f.plateChar.valid && f.plateChar.touched)" class="error-box">
+          <div *ngIf="f.plateChar.errors?.required" class="error-text">This is required</div>
+          <div *ngIf="f.plateChar.errors?.message" class="error-text">
+            {{f.plateChar.errors?.message}}
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+        <div class="mb-3 mt-3">
+          <label class="form-label mb-2 fw-bold">Plate Number<span class="text-danger">*</span></label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">
+              <platenumber-icon></platenumber-icon>
+            </span>
+            <input type="text" class="form-control form-control-lg" placeholder="Plate Number"
+              formControlName="plateNumber" />
+          </div>
+        </div>
+        <div *ngIf="(f.plateNumber.errors && submitted) || (!f.plateNumber.valid && f.plateNumber.touched)" class="error-box">
+          <div *ngIf="f.plateNumber.errors?.required" class="error-text">This is required</div>
+          <div *ngIf="f.plateNumber.errors?.message" class="error-text">
+            {{f.plateNumber.errors?.message}}
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="mb-3 mt-3">
+          <label class="form-label mb-2 fw-bold">Type Of Driver<span class="text-danger">*</span></label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">
+              <driver-icon></driver-icon>
+            </span>
+            <ng-select class="form-control form-control-lg" [items]="driverTypeList" bindValue="Code" bindLabel="Description_en"
+              placeholder="Type Of Driver" formControlName="driverType">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="mb-3 mt-3">
+          <label class="form-label mb-2 fw-bold">Civil Id<span class="text-danger">*</span></label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">
+              <license-icon></license-icon>
+            </span>
+            <input type="text" class="form-control form-control-lg" placeholder="Plate Number"
+              formControlName="drivCivilCrNo" />
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="mb-3 mt-3">
+          <label class="form-label mb-2 fw-bold">Mobile Number<span class="text-danger">*</span></label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">
+              <number-icon></number-icon>
+            </span>
+            <input type="text" class="form-control form-control-lg" placeholder="Mobile Number"
+              formControlName="MobileNo" digitOnly maxlength="8"/>
+          </div>
+        </div>
+        <div *ngIf="(f.MobileNo.errors && submitted) || (!f.MobileNo.valid && f.MobileNo.touched)" class="error-box">
+          <div *ngIf="f.MobileNo.errors?.required" class="error-text">Mobile Number is required</div>
+          <div *ngIf="f.MobileNo.errors?.pattern" class="error-text">Number Start With 9 or 7</div>
+        </div>
+      </div>
+      <div class="col-12">
+        <re-captcha formControlName="recaptchaReactive" (resolved)="addTokenLog('Reactive form mode resolved', $event)"></re-captcha>
+
+      </div>
+    </div>
+    <div class="text-center">
+      <button type="button" class="btn vision-blue-btn mx-2" (click)="onFormSubmit()" [disabled]="!getQuoteForm.valid">
+        Get Quote
+        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="ps-2" height="30"
+          width="30" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z">
+          </path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</form>

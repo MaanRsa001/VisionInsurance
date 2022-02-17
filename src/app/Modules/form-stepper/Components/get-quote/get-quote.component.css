@@ -1,0 +1,12 @@
+::ng-deep .mat-horizontal-stepper-header{
+  pointer-events: none !important;
+}
+/* hide recaptcha badge*/
+.grecaptcha-badge {
+	visibility: hidden;
+}
+
+/* only show recaptcha badge on needed pages */
+body.recaptcha .grecaptcha-badge {
+	visibility: visible;
+}

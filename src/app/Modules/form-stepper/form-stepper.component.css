@@ -1,7 +1,27 @@
 .bg-container {
   padding: 310px 20px 14px 10px;
-  background-image: url("../../../assets/images/car-bg_png.png");
   background-position: left top;
   background-size: 420px;
   background-repeat: no-repeat;
+}
+
+.navbar.fixed-bottom{
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07),
+                0 2px 4px rgba(0,0,0,0.07),
+                0 4px 8px rgba(0,0,0,0.07),
+                0 8px 16px rgba(0,0,0,0.07),
+                0 16px 32px rgba(0,0,0,0.07),
+                0 32px 64px rgba(0,0,0,0.07);
+  background-color: #fff !important;
+  padding: 1rem 1rem;
+}
+.footer-premium .title h5{
+ color: var(--appColor1);
+}
+.footer-premium  .sub-title h6{
+ color: var(--appColor2);
+
+}
+.view-permium-details{
+cursor: pointer;
 }

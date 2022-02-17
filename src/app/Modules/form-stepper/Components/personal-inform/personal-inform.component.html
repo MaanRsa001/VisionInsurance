@@ -1,101 +1,474 @@
-<form [formGroup]="personalForm">
-    <div class="row">
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-            <div class="mb-3 mt-3">
-                <label class="form-label mb-2 fw-bold">Name</label>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">
-                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
-                            color="#ea5d25" class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg"
-                            style="color: rgb(234, 93, 37);">
-                            <path
-                                d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z">
-                            </path>
-                        </svg>
-                    </span>
-                    <input type="text" class="form-control form-control-lg" placeholder="Name">
-                </div>
-            </div>
+<form  [formGroup]="personalForm" >
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="mb-3 mt-3">
+        <label class="form-label mb-2 fw-bold">Title</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" color="#ea5d25"
+              class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg" style="color: rgb(234, 93, 37);">
+              <path
+                d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H136V232h752v560zM610.3 476h123.4c1.3 0 2.3-3.6 2.3-8v-48c0-4.4-1-8-2.3-8H610.3c-1.3 0-2.3 3.6-2.3 8v48c0 4.4 1 8 2.3 8zm4.8 144h185.7c3.9 0 7.1-3.6 7.1-8v-48c0-4.4-3.2-8-7.1-8H615.1c-3.9 0-7.1 3.6-7.1 8v48c0 4.4 3.2 8 7.1 8zM224 673h43.9c4.2 0 7.6-3.3 7.9-7.5 3.8-50.5 46-90.5 97.2-90.5s93.4 40 97.2 90.5c.3 4.2 3.7 7.5 7.9 7.5H522a8 8 0 0 0 8-8.4c-2.8-53.3-32-99.7-74.6-126.1a111.8 111.8 0 0 0 29.1-75.5c0-61.9-49.9-112-111.4-112s-111.4 50.1-111.4 112c0 29.1 11 55.5 29.1 75.5a158.09 158.09 0 0 0-74.6 126.1c-.4 4.6 3.2 8.4 7.8 8.4zm149-262c28.5 0 51.7 23.3 51.7 52s-23.2 52-51.7 52-51.7-23.3-51.7-52 23.2-52 51.7-52z">
+              </path>
+            </svg>
+          </span>
+          <ng-select class="form-control form-control-lg" placeholder="Title" formControlName="Title" [items]="TitleList" bindValue="Code" bindLabel="Description_en" (change)="onGenderChange($event.Code)">
+          </ng-select>
         </div>
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-            <div class="mb-3 mt-3">
-                <label class="form-label mb-2 fw-bold">Date of Birth</label>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">
-                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024"
-                            color="#ea5d25" class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg"
-                            style="color: rgb(234, 93, 37);">
-                            <path
-                                d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z">
-                            </path>
-                        </svg>
-                    </span>
-                    <input type="text" class="form-control form-control-lg" placeholder="Date of Birth">
-                </div>
-            </div>
+        <div *ngIf="(f.Title.errors && submitted) || (!f.Title.valid && f.Title.touched)" class="error-box">
+          <div *ngIf="f.Title.errors?.required" class="error-text">Title is required</div>
         </div>
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-            <div class="mb-3 mt-3">
-                <label class="form-label mb-2 fw-bold">Email</label>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">
-                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024"
-                            color="#ea5d25" class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg"
-                            style="color: rgb(234, 93, 37);">
-                            <path
-                                d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 110.8V792H136V270.8l-27.6-21.5 39.3-50.5 42.8 33.3h643.1l42.8-33.3 39.3 50.5-27.7 21.5zM833.6 232L512 482 190.4 232l-42.8-33.3-39.3 50.5 27.6 21.5 341.6 265.6a55.99 55.99 0 0 0 68.7 0L888 270.8l27.6-21.5-39.3-50.5-42.7 33.2z">
-                            </path>
-                        </svg>
-                    </span>
-                    <input type="text" class="form-control form-control-lg" placeholder="Email">
-                </div>
-            </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="mb-3 mt-3">
+        <label class="form-label mb-2 fw-bold">First name</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" color="#ea5d25"
+              class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg" style="color: rgb(234, 93, 37);">
+              <path
+                d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z">
+              </path>
+            </svg>
+          </span>
+          <input type="text" class="form-control form-control-lg" placeholder="Firstname" formControlName="firstName">
         </div>
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-            <div class="mb-3 mt-3">
-                <label class="form-label mb-2 fw-bold">Wilayat</label>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">
-                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024"
-                            color="#ea5d25" class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg"
-                            style="color: rgb(234, 93, 37);">
-                            <path
-                                d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H136V232h752v560zM610.3 476h123.4c1.3 0 2.3-3.6 2.3-8v-48c0-4.4-1-8-2.3-8H610.3c-1.3 0-2.3 3.6-2.3 8v48c0 4.4 1 8 2.3 8zm4.8 144h185.7c3.9 0 7.1-3.6 7.1-8v-48c0-4.4-3.2-8-7.1-8H615.1c-3.9 0-7.1 3.6-7.1 8v48c0 4.4 3.2 8 7.1 8zM224 673h43.9c4.2 0 7.6-3.3 7.9-7.5 3.8-50.5 46-90.5 97.2-90.5s93.4 40 97.2 90.5c.3 4.2 3.7 7.5 7.9 7.5H522a8 8 0 0 0 8-8.4c-2.8-53.3-32-99.7-74.6-126.1a111.8 111.8 0 0 0 29.1-75.5c0-61.9-49.9-112-111.4-112s-111.4 50.1-111.4 112c0 29.1 11 55.5 29.1 75.5a158.09 158.09 0 0 0-74.6 126.1c-.4 4.6 3.2 8.4 7.8 8.4zm149-262c28.5 0 51.7 23.3 51.7 52s-23.2 52-51.7 52-51.7-23.3-51.7-52 23.2-52 51.7-52z">
-                            </path>
-                        </svg>
-                    </span>
-                    <input type="text" class="form-control form-control-lg" placeholder="Wilayat">
-                </div>
-            </div>
+        <div *ngIf="(f.firstName.errors && submitted) || (!f.firstName.valid && f.firstName.touched)" class="error-box">
+          <div *ngIf="f.firstName.errors?.required" class="error-text">Firstname is required</div>
         </div>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="mb-3 mt-3">
-                <label class="form-label mb-2 fw-bold">Upload Document 1</label>
-                <button type="button" class="btn vision-upload-btn mx-2">
-                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="me-2"
-                        height="25" width="25" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M400 317.7h73.9V656c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V317.7H624c6.7 0 10.4-7.7 6.3-12.9L518.3 163a8 8 0 0 0-12.6 0l-112 141.7c-4.1 5.3-.4 13 6.3 13zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z">
-                        </path>
-                    </svg>
-                    Click to Upload
-                </button>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="mb-3 mt-3">
+        <label class="form-label mb-2 fw-bold">Last name</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" color="#ea5d25"
+              class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg" style="color: rgb(234, 93, 37);">
+              <path
+                d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z">
+              </path>
+            </svg>
+          </span>
+          <input type="text" class="form-control form-control-lg" placeholder="Last name" formControlName="lastName">
+        </div>
+        <div *ngIf="(f.lastName.errors && submitted) || (!f.lastName.valid && f.lastName.touched)" class="error-box">
+          <div *ngIf="f.lastName.errors?.required" class="error-text">Lastname is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6" *ngIf="vehicleInfoForm.controls['isVehicleOwned'].value == 'N' ">
+      <div class="mb-3 mt-3">
+        <label class="form-label mb-2 fw-bold">Date of Birth</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" color="#ea5d25"
+              class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg" style="color: rgb(234, 93, 37);">
+              <path
+                d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z">
+              </path>
+            </svg>
+          </span>
+          <input type="text" class="form-control form-control-lg" placeholder="Date of Birth"
+          formControlName="dateOfBirth"
+          bsDatepicker
+          [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY' }"
+          >
+        </div>
+        <div *ngIf="(f.dateOfBirth.errors && submitted) || (!f.dateOfBirth.valid && f.dateOfBirth.touched)" class="error-box">
+          <div *ngIf="f.dateOfBirth.errors?.required" class="error-text">DateOfBirth is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-6 col-md-6 col-lg-6" *ngIf="vehicleInfoForm.controls['isVehicleOwned'].value == 'N' ">
+      <div class="mb-3 mt-3">
+        <label class="form-label mb-2 fw-bold">Gender</label>
+        <div class="custom-radio-btn">
+          <div class="radio-toolbar">
+           <input id="gender_Yes" type="radio" formControlName="gender" name="gender" value="1" (change)="onGenderChange('1')">
+           <label for="gender_Yes">Male</label>
+           <input type="radio" id="gender_No" formControlName="gender" name="gender" value="2" (change)="onGenderChange('2')">
+           <label for="gender_No">Female</label>
+         </div>
+       </div>
+
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="mb-3 mt-3">
+        <label class="form-label mb-2 fw-bold">Occupation</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" color="#ea5d25"
+              class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg" style="color: rgb(234, 93, 37);">
+              <path
+                d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H136V232h752v560zM610.3 476h123.4c1.3 0 2.3-3.6 2.3-8v-48c0-4.4-1-8-2.3-8H610.3c-1.3 0-2.3 3.6-2.3 8v48c0 4.4 1 8 2.3 8zm4.8 144h185.7c3.9 0 7.1-3.6 7.1-8v-48c0-4.4-3.2-8-7.1-8H615.1c-3.9 0-7.1 3.6-7.1 8v48c0 4.4 3.2 8 7.1 8zM224 673h43.9c4.2 0 7.6-3.3 7.9-7.5 3.8-50.5 46-90.5 97.2-90.5s93.4 40 97.2 90.5c.3 4.2 3.7 7.5 7.9 7.5H522a8 8 0 0 0 8-8.4c-2.8-53.3-32-99.7-74.6-126.1a111.8 111.8 0 0 0 29.1-75.5c0-61.9-49.9-112-111.4-112s-111.4 50.1-111.4 112c0 29.1 11 55.5 29.1 75.5a158.09 158.09 0 0 0-74.6 126.1c-.4 4.6 3.2 8.4 7.8 8.4zm149-262c28.5 0 51.7 23.3 51.7 52s-23.2 52-51.7 52-51.7-23.3-51.7-52 23.2-52 51.7-52z">
+              </path>
+            </svg>
+          </span>
+          <ng-select class="form-control form-control-lg" placeholder="Occupation" formControlName="occupation" [items]="occupationList" bindValue="Code" bindLabel="Description_en" (change)="onChangeOccupation()">
+          </ng-select>
+        </div>
+        <div *ngIf="(f.occupation.errors && submitted) || (!f.occupation.valid && f.occupation.touched)" class="error-box">
+          <div *ngIf="f.occupation.errors?.required" class="error-text">Occupation is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6" *ngIf="personalForm.controls['occupation'].value == '99999'">
+      <div class="mb-3 mt-3">
+        <label class="form-label mb-2 fw-bold">Other Occupation</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" color="#ea5d25"
+              class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg" style="color: rgb(234, 93, 37);">
+              <path
+                d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 110.8V792H136V270.8l-27.6-21.5 39.3-50.5 42.8 33.3h643.1l42.8-33.3 39.3 50.5-27.7 21.5zM833.6 232L512 482 190.4 232l-42.8-33.3-39.3 50.5 27.6 21.5 341.6 265.6a55.99 55.99 0 0 0 68.7 0L888 270.8l27.6-21.5-39.3-50.5-42.7 33.2z">
+              </path>
+            </svg>
+          </span>
+          <input type="text" class="form-control form-control-lg" placeholder="Other Occupation" formControlName="otherOccupation">
+        </div>
+        <div *ngIf="(f.otherOccupation.errors && submitted) || (!f.otherOccupation.valid && f.otherOccupation.touched)" class="error-box">
+          <div *ngIf="f.otherOccupation.errors?.required" class="error-text">OtherOccupation is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="mb-3 mt-3">
+        <label class="form-label mb-2 fw-bold">Whatsapp Number</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" color="#ea5d25"
+              class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg" style="color: rgb(234, 93, 37);">
+              <path
+                d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z">
+              </path>
+            </svg>
+          </span>
+          <span class="input-group-text p-0 px-1">
+          <input type="text" class="form-control form-control-lg border-end" digitOnly maxlength="3" placeholder="Code" formControlName="whatsappCode" style="width: 80px;border-radius: 0">
+          </span>
+          <input type="text" class="form-control form-control-lg" digitOnly maxlength="10" placeholder="Whatsapp Number" formControlName="whatsappNumber">
+        </div>
+        <div *ngIf="(f.whatsappNumber.errors && submitted) || (!f.whatsappNumber.valid && f.whatsappNumber.touched)" class="error-box">
+          <div *ngIf="f.whatsappNumber.errors?.required" class="error-text">Whatsapp Number is required</div>
+          <div *ngIf="f.whatsappNumber.errors?.invalidNumber" class="error-text">Number Start With 9 or 7</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="mb-3 mt-3">
+        <label class="form-label mb-2 fw-bold">Address 1</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" color="#ea5d25"
+              class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg" style="color: rgb(234, 93, 37);">
+              <path
+                d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z">
+              </path>
+            </svg>
+          </span>
+          <input type="text" class="form-control form-control-lg" placeholder="Address 1" formControlName="address1">
+        </div>
+        <div *ngIf="(f.address1.errors && submitted) || (!f.address1.valid && f.address1.touched)" class="error-box">
+          <div *ngIf="f.address1.errors?.required" class="error-text">Address1 is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="mb-3 mt-3">
+        <label class="form-label mb-2 fw-bold">Address 2</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" color="#ea5d25"
+              class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg" style="color: rgb(234, 93, 37);">
+              <path
+                d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z">
+              </path>
+            </svg>
+          </span>
+          <input type="text" class="form-control form-control-lg" placeholder="Address 2" formControlName="address2">
+        </div>
+        <div *ngIf="(f.address2.errors && submitted) || (!f.address2.valid && f.address2.touched)" class="error-box">
+          <div *ngIf="f.address2.errors?.required" class="error-text">Address2 is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="mb-3 mt-3">
+        <label class="form-label mb-2 fw-bold">Wilayat</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" color="#ea5d25"
+              class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg" style="color: rgb(234, 93, 37);">
+              <path
+                d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H136V232h752v560zM610.3 476h123.4c1.3 0 2.3-3.6 2.3-8v-48c0-4.4-1-8-2.3-8H610.3c-1.3 0-2.3 3.6-2.3 8v48c0 4.4 1 8 2.3 8zm4.8 144h185.7c3.9 0 7.1-3.6 7.1-8v-48c0-4.4-3.2-8-7.1-8H615.1c-3.9 0-7.1 3.6-7.1 8v48c0 4.4 3.2 8 7.1 8zM224 673h43.9c4.2 0 7.6-3.3 7.9-7.5 3.8-50.5 46-90.5 97.2-90.5s93.4 40 97.2 90.5c.3 4.2 3.7 7.5 7.9 7.5H522a8 8 0 0 0 8-8.4c-2.8-53.3-32-99.7-74.6-126.1a111.8 111.8 0 0 0 29.1-75.5c0-61.9-49.9-112-111.4-112s-111.4 50.1-111.4 112c0 29.1 11 55.5 29.1 75.5a158.09 158.09 0 0 0-74.6 126.1c-.4 4.6 3.2 8.4 7.8 8.4zm149-262c28.5 0 51.7 23.3 51.7 52s-23.2 52-51.7 52-51.7-23.3-51.7-52 23.2-52 51.7-52z">
+              </path>
+            </svg>
+          </span>
+          <ng-select class="form-control form-control-lg" placeholder="Wilayat" formControlName="wilayat" [items]="wilayatList" bindValue="Code" bindLabel="Description_en">
+          </ng-select>
+        </div>
+        <div *ngIf="(f.wilayat.errors && submitted) || (!f.wilayat.valid && f.wilayat.touched)" class="error-box">
+          <div *ngIf="f.wilayat.errors?.required" class="error-text">Wilayat is required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="mb-3 mt-3">
+        <label class="form-label mb-2 fw-bold">Policy Start Date</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" color="#ea5d25"
+              class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg" style="color: rgb(234, 93, 37);">
+              <path
+                d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H136V232h752v560zM610.3 476h123.4c1.3 0 2.3-3.6 2.3-8v-48c0-4.4-1-8-2.3-8H610.3c-1.3 0-2.3 3.6-2.3 8v48c0 4.4 1 8 2.3 8zm4.8 144h185.7c3.9 0 7.1-3.6 7.1-8v-48c0-4.4-3.2-8-7.1-8H615.1c-3.9 0-7.1 3.6-7.1 8v48c0 4.4 3.2 8 7.1 8zM224 673h43.9c4.2 0 7.6-3.3 7.9-7.5 3.8-50.5 46-90.5 97.2-90.5s93.4 40 97.2 90.5c.3 4.2 3.7 7.5 7.9 7.5H522a8 8 0 0 0 8-8.4c-2.8-53.3-32-99.7-74.6-126.1a111.8 111.8 0 0 0 29.1-75.5c0-61.9-49.9-112-111.4-112s-111.4 50.1-111.4 112c0 29.1 11 55.5 29.1 75.5a158.09 158.09 0 0 0-74.6 126.1c-.4 4.6 3.2 8.4 7.8 8.4zm149-262c28.5 0 51.7 23.3 51.7 52s-23.2 52-51.7 52-51.7-23.3-51.7-52 23.2-52 51.7-52z">
+              </path>
+            </svg>
+          </span>
+          <input type="text" class="form-control form-control-lg"
+           placeholder="DD/MM/YYYY"
+            formControlName="policyDate"
+            bsDatepicker
+            [bsValue]="bsValue"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
+            [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY' }"
+           >
+
+        </div>
+        <div *ngIf="(f.policyDate.errors && submitted) || (!f.policyDate.valid && f.policyDate.touched)" class="error-box">
+          <div *ngIf="f.policyDate.errors?.required" class="error-text">PolicyDate is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="mb-3 mt-3">
+        <label class="form-label mb-2 fw-bold">Nationality</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" color="#ea5d25"
+              class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg" style="color: rgb(234, 93, 37);">
+              <path
+                d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H136V232h752v560zM610.3 476h123.4c1.3 0 2.3-3.6 2.3-8v-48c0-4.4-1-8-2.3-8H610.3c-1.3 0-2.3 3.6-2.3 8v48c0 4.4 1 8 2.3 8zm4.8 144h185.7c3.9 0 7.1-3.6 7.1-8v-48c0-4.4-3.2-8-7.1-8H615.1c-3.9 0-7.1 3.6-7.1 8v48c0 4.4 3.2 8 7.1 8zM224 673h43.9c4.2 0 7.6-3.3 7.9-7.5 3.8-50.5 46-90.5 97.2-90.5s93.4 40 97.2 90.5c.3 4.2 3.7 7.5 7.9 7.5H522a8 8 0 0 0 8-8.4c-2.8-53.3-32-99.7-74.6-126.1a111.8 111.8 0 0 0 29.1-75.5c0-61.9-49.9-112-111.4-112s-111.4 50.1-111.4 112c0 29.1 11 55.5 29.1 75.5a158.09 158.09 0 0 0-74.6 126.1c-.4 4.6 3.2 8.4 7.8 8.4zm149-262c28.5 0 51.7 23.3 51.7 52s-23.2 52-51.7 52-51.7-23.3-51.7-52 23.2-52 51.7-52z">
+              </path>
+            </svg>
+          </span>
+          <ng-select class="form-control form-control-lg" placeholder="Nationality" [items]="nationalityList" bindValue="Code" bindLabel="Description_en"  formControlName="Nationality" (change)="onNationalityChange($event)">
+          </ng-select>
+        </div>
+        <div *ngIf="(f.Nationality.errors && submitted) || (!f.Nationality.valid && f.Nationality.touched)" class="error-box">
+          <div *ngIf="f.Nationality.errors?.required" class="error-text">Nationality is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="mb-3 mt-3">
+        <label class="form-label mb-2 fw-bold">City</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" color="#ea5d25"
+              class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg" style="color: rgb(234, 93, 37);">
+              <path
+                d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H136V232h752v560zM610.3 476h123.4c1.3 0 2.3-3.6 2.3-8v-48c0-4.4-1-8-2.3-8H610.3c-1.3 0-2.3 3.6-2.3 8v48c0 4.4 1 8 2.3 8zm4.8 144h185.7c3.9 0 7.1-3.6 7.1-8v-48c0-4.4-3.2-8-7.1-8H615.1c-3.9 0-7.1 3.6-7.1 8v48c0 4.4 3.2 8 7.1 8zM224 673h43.9c4.2 0 7.6-3.3 7.9-7.5 3.8-50.5 46-90.5 97.2-90.5s93.4 40 97.2 90.5c.3 4.2 3.7 7.5 7.9 7.5H522a8 8 0 0 0 8-8.4c-2.8-53.3-32-99.7-74.6-126.1a111.8 111.8 0 0 0 29.1-75.5c0-61.9-49.9-112-111.4-112s-111.4 50.1-111.4 112c0 29.1 11 55.5 29.1 75.5a158.09 158.09 0 0 0-74.6 126.1c-.4 4.6 3.2 8.4 7.8 8.4zm149-262c28.5 0 51.7 23.3 51.7 52s-23.2 52-51.7 52-51.7-23.3-51.7-52 23.2-52 51.7-52z">
+              </path>
+            </svg>
+          </span>
+          <ng-select class="form-control form-control-lg" placeholder="City" formControlName="City" [items]="cityList" bindValue="Code" bindLabel="Description_en" >
+          </ng-select>
+        </div>
+        <div *ngIf="(f.City.errors && submitted) || (!f.City.valid && f.City.touched)" class="error-box">
+          <div *ngIf="f.City.errors?.required" class="error-text">City is required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex">
+      <h4 class="fw-bold my-2">
+        Additional Driver Details
+      </h4>
+      <div class="custom-radio-btn mx-5">
+        <div class="radio-toolbar">
+         <input id="isAdditionalDriver_Yes" type="radio" formControlName="isAdditionalDriver" name="isAdditionalDriver" value="Y" (change)="onCheckisAdditionalDriver()">
+         <label for="isAdditionalDriver_Yes">Yes</label>
+         <input type="radio" id="isAdditionalDriver_No" formControlName="isAdditionalDriver" name="isAdditionalDriver" value="N" (change)="onCheckisAdditionalDriver()">
+         <label for="isAdditionalDriver_No">No</label>
+       </div>
+      </div>
+    </div>
+    <div class="col-12" formArrayName="driverdetails" *ngIf="personalForm.controls['isAdditionalDriver'].value == 'Y'">
+      <div class="row"  *ngFor="let obj of formData.controls; let i = index"
+      [formGroupName]="i">
+        <div class="col-12 col-sm-5 col-md-5 col-lg-5">
+          <div class="mb-3 mt-3">
+            <label class="form-label mb-2 fw-bold">First name</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" color="#ea5d25"
+                  class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg" style="color: rgb(234, 93, 37);">
+                  <path
+                    d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H136V232h752v560zM610.3 476h123.4c1.3 0 2.3-3.6 2.3-8v-48c0-4.4-1-8-2.3-8H610.3c-1.3 0-2.3 3.6-2.3 8v48c0 4.4 1 8 2.3 8zm4.8 144h185.7c3.9 0 7.1-3.6 7.1-8v-48c0-4.4-3.2-8-7.1-8H615.1c-3.9 0-7.1 3.6-7.1 8v48c0 4.4 3.2 8 7.1 8zM224 673h43.9c4.2 0 7.6-3.3 7.9-7.5 3.8-50.5 46-90.5 97.2-90.5s93.4 40 97.2 90.5c.3 4.2 3.7 7.5 7.9 7.5H522a8 8 0 0 0 8-8.4c-2.8-53.3-32-99.7-74.6-126.1a111.8 111.8 0 0 0 29.1-75.5c0-61.9-49.9-112-111.4-112s-111.4 50.1-111.4 112c0 29.1 11 55.5 29.1 75.5a158.09 158.09 0 0 0-74.6 126.1c-.4 4.6 3.2 8.4 7.8 8.4zm149-262c28.5 0 51.7 23.3 51.7 52s-23.2 52-51.7 52-51.7-23.3-51.7-52 23.2-52 51.7-52z">
+                  </path>
+                </svg>
+              </span>
+              <input type="text" class="form-control form-control-lg"  placeholder="First name" formControlName="DriverName">
             </div>
+            <div *ngIf="(obj.get('DriverName')?.errors && submitted) || (!obj.get('DriverName')?.valid && obj.get('DriverName')?.touched)" class="error-box">
+              <div *ngIf="obj.get('DriverName')?.errors?.required" class="error-text">First name is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-5 col-md-5 col-lg-5">
+          <div class="mb-3 mt-3">
+            <label class="form-label mb-2 fw-bold">Last name</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" color="#ea5d25"
+                  class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg" style="color: rgb(234, 93, 37);">
+                  <path
+                    d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H136V232h752v560zM610.3 476h123.4c1.3 0 2.3-3.6 2.3-8v-48c0-4.4-1-8-2.3-8H610.3c-1.3 0-2.3 3.6-2.3 8v48c0 4.4 1 8 2.3 8zm4.8 144h185.7c3.9 0 7.1-3.6 7.1-8v-48c0-4.4-3.2-8-7.1-8H615.1c-3.9 0-7.1 3.6-7.1 8v48c0 4.4 3.2 8 7.1 8zM224 673h43.9c4.2 0 7.6-3.3 7.9-7.5 3.8-50.5 46-90.5 97.2-90.5s93.4 40 97.2 90.5c.3 4.2 3.7 7.5 7.9 7.5H522a8 8 0 0 0 8-8.4c-2.8-53.3-32-99.7-74.6-126.1a111.8 111.8 0 0 0 29.1-75.5c0-61.9-49.9-112-111.4-112s-111.4 50.1-111.4 112c0 29.1 11 55.5 29.1 75.5a158.09 158.09 0 0 0-74.6 126.1c-.4 4.6 3.2 8.4 7.8 8.4zm149-262c28.5 0 51.7 23.3 51.7 52s-23.2 52-51.7 52-51.7-23.3-51.7-52 23.2-52 51.7-52z">
+                  </path>
+                </svg>
+              </span>
+              <input type="text" class="form-control form-control-lg" placeholder="Last name" formControlName="LastName">
+            </div>
+            <div *ngIf="(obj.get('LastName')?.errors && submitted) || (!obj.get('LastName')?.valid && obj.get('LastName')?.touched)" class="error-box">
+              <div *ngIf="obj.get('LastName')?.errors?.required" class="error-text">Last name is required</div>
+            </div>
+          </div>
+        </div>
+          <div class="col-12 col-sm-2 col-md-2 col-lg-2" style="padding: 45px 0;">
+            <div class="">
+              <button type="button" class="btn mx-2" (click)="deleteDriverForm.emit(i)" *ngIf="i != 0">
+                <i class="fas fa-trash-restore-alt"></i>
+              </button>
+              <button type="button" class="btn mx-2" (click)="addDriverForm.emit()">
+                <i class="far fa-plus-square"></i>
+              </button>
+            </div>
+          </div>
+      </div>
+
+    </div>
+
+
+
+
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="mb-3 mt-3">
+        <label class="form-label mb-2 fw-bold">Document Upload</label>
+
+        <ul class="list-group list-group-horizontal">
+          <li  class="list-group-item flex-fill text-center" (click)="onDocument()" style="cursor: pointer;">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="me-2"
+                height="25" width="25" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M400 317.7h73.9V656c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V317.7H624c6.7 0 10.4-7.7 6.3-12.9L518.3 163a8 8 0 0 0-12.6 0l-112 141.7c-4.1 5.3-.4 13 6.3 13zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z">
+                </path>
+              </svg>
+              Click to Upload
+          </li>
+        </ul>
+      </div>
+      <div class="mb-3 mt-3">
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6" *ngIf="vehicleInfoForm.controls['geoGraphicalExtension'].value == '2'">
+      <div class="mb-3 mt-3">
+        <label class="form-label mb-2 fw-bold">Orange Card</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" color="#ea5d25"
+              class="m-1" height="30" width="30" xmlns="http://www.w3.org/2000/svg" style="color: rgb(234, 93, 37);">
+              <path
+                d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H136V232h752v560zM610.3 476h123.4c1.3 0 2.3-3.6 2.3-8v-48c0-4.4-1-8-2.3-8H610.3c-1.3 0-2.3 3.6-2.3 8v48c0 4.4 1 8 2.3 8zm4.8 144h185.7c3.9 0 7.1-3.6 7.1-8v-48c0-4.4-3.2-8-7.1-8H615.1c-3.9 0-7.1 3.6-7.1 8v48c0 4.4 3.2 8 7.1 8zM224 673h43.9c4.2 0 7.6-3.3 7.9-7.5 3.8-50.5 46-90.5 97.2-90.5s93.4 40 97.2 90.5c.3 4.2 3.7 7.5 7.9 7.5H522a8 8 0 0 0 8-8.4c-2.8-53.3-32-99.7-74.6-126.1a111.8 111.8 0 0 0 29.1-75.5c0-61.9-49.9-112-111.4-112s-111.4 50.1-111.4 112c0 29.1 11 55.5 29.1 75.5a158.09 158.09 0 0 0-74.6 126.1c-.4 4.6 3.2 8.4 7.8 8.4zm149-262c28.5 0 51.7 23.3 51.7 52s-23.2 52-51.7 52-51.7-23.3-51.7-52 23.2-52 51.7-52z">
+              </path>
+            </svg>
+          </span>
+          <ng-select class="form-control form-control-lg" placeholder="Orange Card" [items]="orangeCardList" bindValue="Code" bindLabel="Description_en" formControlName="orangeCard">
+          </ng-select>
+        </div>
+        <div *ngIf="(f.orangeCard.errors && submitted) || (!f.orangeCard.valid && f.orangeCard.touched)" class="error-box">
+          <div *ngIf="f.orangeCard.errors?.required" class="error-text">OrangeCard is required</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <button type="button" class="btn vision-orange-btn mx-2" (click)="isDownloadForm = true;onInsertPersonalDetails()">
+      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="pe-2"
+        height="30" width="30" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M505.7 661a8 8 0 0 0 12.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z">
+        </path>
+      </svg>
+      Download Form
+    </button>
+  </div>
+  <nav class="navbar navbar-expand-sm bg-light navbar-light fixed-bottom ">
+    <div class="container-fluid justify-content-between">
+      <div class="flex-item">
+        <button type="button" class="btn vision-blue-btn mx-2" matStepperPrevious>
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="pe-2"
+            height="30" width="30" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z">
+            </path>
+          </svg>
+          Back
+        </button>
+      </div>
+      <div class="flex-item">
+        <div class="d-flex">
+          <div class="flex-item p-2">
+            <img src="./assets/images/car-premium.png" width="60">
+          </div>
+          <div class="flex-item p-2">
+            <div class="footer-premium">
+              <div class="title d-flex">
+                <div>
+                  <h5 class="fw-bold">
+                    {{policyInfo?.VehicletypeDesc}} {{policyInfo?.PolicyTypeDesc}}
+                  </h5>
+                  <div class="sub-title" style="color: var(--appColor2);">
+                    <h6 class="fw-bold">{{policyInfo?.GeographicalExtensionDesc}}</h6>
+                  </div>
+                </div>
+
+                <div class="px-5 view-permium-details">
+                  <div style="cursor: pointer;" class="text-primary " (click)="onVeiwCoverage()">
+                    View Details<i class="fas fa-chevron-up mx-2"></i>
+                  </div>
+                  <div class="sub-title" style="color: var(--appColor2);">
+                    <h6 class="fw-bold" *ngIf="!isAddon">OMR {{policyInfo?.TotalPremium}}</h6>
+                    <h6 class="fw-bold" *ngIf="isAddon">OMR {{isAddonData?.totalpremium}}</h6>
+
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
         </div>
 
-        <div class="col-12 col-sm-4 col-md-6 col-lg-6">
-            <div class="mb-3 mt-3">
-                <label class="form-label mb-2 fw-bold">Upload Document 2</label>
-                <button type="button" class="btn vision-upload-btn mx-2">
-                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="me-2"
-                        height="25" width="25" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M400 317.7h73.9V656c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V317.7H624c6.7 0 10.4-7.7 6.3-12.9L518.3 163a8 8 0 0 0-12.6 0l-112 141.7c-4.1 5.3-.4 13 6.3 13zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z">
-                        </path>
-                    </svg>
-                    Click to Upload
-                </button>
-            </div>
-        </div>
+      </div>
+      <div class="flex-item">
+        <button type="button" class="btn vision-blue-btn mx-2" (click)="onInsertPersonalDetails()">
+          Make Payment
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="ps-2"
+            height="30" width="30" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z">
+            </path>
+          </svg>
+        </button>
+      </div>
+
+
     </div>
+  </nav>
 </form>

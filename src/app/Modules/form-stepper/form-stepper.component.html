@@ -1,155 +1,165 @@
 <div class="row">
-    <div class="col-12">
-        <div class="container" style="margin-top: 100px;">
-            <mat-stepper labelPosition="bottom" #stepper>
-                <mat-step [stepControl]="vehicleInfoForm">
-                    <form [formGroup]="vehicleInfoForm">
-                        <ng-template matStepLabel>
-                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 640 512"
-                                height="30" width="30" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M544 192h-16L419.22 56.02A64.025 64.025 0 0 0 369.24 32H155.33c-26.17 0-49.7 15.93-59.42 40.23L48 194.26C20.44 201.4 0 226.21 0 256v112c0 8.84 7.16 16 16 16h48c0 53.02 42.98 96 96 96s96-42.98 96-96h128c0 53.02 42.98 96 96 96s96-42.98 96-96h48c8.84 0 16-7.16 16-16v-80c0-53.02-42.98-96-96-96zM160 432c-26.47 0-48-21.53-48-48s21.53-48 48-48 48 21.53 48 48-21.53 48-48 48zm72-240H116.93l38.4-96H232v96zm48 0V96h89.24l76.8 96H280zm200 240c-26.47 0-48-21.53-48-48s21.53-48 48-48 48 21.53 48 48-21.53 48-48 48z">
-                                </path>
-                            </svg><br>
-                            Vehicle Details
-                        </ng-template>
-                        <div class="">
-                            <div class="card my-5">
-                                <div class="card-header">
-                                    <h4 class="fw-bold">Please provide details of your vehicle to help us generate a
-                                        quote for
-                                        you!
-                                    </h4>
-                                </div>
-                                <div class="card-body">
-                                    <app-vehicle-inform [vehicleInfoForm]="vehicleInfoForm" [NcdList]="NcdList" [TonneList]="TonneList" [geoGraphiclaList]="geoGraphiclaList">
+  <div class="col-12">
+    <div class="container" style="padding-bottom: 140px;">
+      <mat-stepper labelPosition="bottom" #stepper>
+        <mat-step [stepControl]="vehicleInfoForm">
+          <form [formGroup]="vehicleInfoForm">
+            <ng-template matStepLabel>
+              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 640 512" height="30"
+                width="30" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M544 192h-16L419.22 56.02A64.025 64.025 0 0 0 369.24 32H155.33c-26.17 0-49.7 15.93-59.42 40.23L48 194.26C20.44 201.4 0 226.21 0 256v112c0 8.84 7.16 16 16 16h48c0 53.02 42.98 96 96 96s96-42.98 96-96h128c0 53.02 42.98 96 96 96s96-42.98 96-96h48c8.84 0 16-7.16 16-16v-80c0-53.02-42.98-96-96-96zM160 432c-26.47 0-48-21.53-48-48s21.53-48 48-48 48 21.53 48 48-21.53 48-48 48zm72-240H116.93l38.4-96H232v96zm48 0V96h89.24l76.8 96H280zm200 240c-26.47 0-48-21.53-48-48s21.53-48 48-48 48 21.53 48 48-21.53 48-48 48z">
+                </path>
+              </svg><br>
+              Vehicle Details
+            </ng-template>
+            <div class="">
+              <div class="card my-5">
+                <div class="card-header">
+                  <h4 class="fw-bold">Please provide details of your vehicle to help us generate a
+                    quote for
+                    you!
+                  </h4>
+                </div>
+                <div class="card-body">
+                  <div class="getquote" *ngIf="isGetQuote">
+                    <app-get-quote
+                    (GetQuoteResponse)="onGetQuoteResponse($event)"
 
-                                    </app-vehicle-inform>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <button type="button" class="btn vision-blue-btn" matStepperNext>Next
-                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                            viewBox="0 0 16 16" class="ps-2" height="30" width="30"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z">
-                                            </path>
-                                        </svg>
-                                    </button>
+                    [browserRefresh]="browserRefresh"
+                    >
+                    </app-get-quote>
+                  </div>
+                  <div class="Vehicleinfo" *ngIf="!isGetQuote">
+                      <app-vehicle-inform
+                      [vehicleInfoForm]="vehicleInfoForm"
+                      [personalForm]="personalForm"
+                      [vehicleInformation]="vehicleInformation"
+                      [GetQuoteDetailsResponse]="GetQuoteDetailsResponse"
+                      [licenseInformation]="licenseInformation"
+                      [NcdList]="NcdList"
+                      [isLightVehicle]="isLightVehicle"
+                      [isHeavyVehicle]="isHeavyVehicle"
+                      [flowType]="flowType"
+                      (premiumResponse)="onGetPremiumResponse($event)"
+                      (isGetQuote)="onGoBack($event)"
 
-                                </div>
-                            </div>
-                        </div>
+                      >
+                      </app-vehicle-inform>
+                  </div>
 
-                    </form>
-                </mat-step>
-                <mat-step [stepControl]="comparisonForm">
-                    <form [formGroup]="comparisonForm">
-                        <ng-template matStepLabel>
-                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
-                                height="30" width="30" xmlns="http://www.w3.org/2000/svg">
-                                <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
-                                    d="M304 160l-64-64 64-64m-97 320l64 64-64 64"></path>
-                                <circle cx="112" cy="96" r="48" fill="none" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="32"></circle>
-                                <circle cx="400" cy="416" r="48" fill="none" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="32"></circle>
-                                <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
-                                    d="M256 96h84a60 60 0 0160 60v212m-145 48h-84a60 60 0 01-60-60V144"></path>
-                            </svg><br>
-                            Comparison
-                        </ng-template>
-                        <div class="">
-                            <div class="card my-5">
-                                <div class="card-header">
-                                    <h4 class="fw-bold">
-                                        Compare Options
-                                    </h4>
-                                </div>
-                                <div class="card-body">
-                                    <app-comparison>
+                </div>
 
-                                    </app-comparison>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <button type="button" class="btn vision-blue-btn mx-2" matStepperPrevious>
-                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                            viewBox="0 0 16 16" class="pe-2" height="30" width="30"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z">
-                                            </path>
-                                        </svg>
-                                        Back
-                                    </button>
+              </div>
+            </div>
 
-                                </div>
-                            </div>
-                        </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="comparisonForm">
+          <form [formGroup]="comparisonForm">
+            <ng-template matStepLabel>
+              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="30"
+                width="30" xmlns="http://www.w3.org/2000/svg">
+                <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
+                  d="M304 160l-64-64 64-64m-97 320l64 64-64 64"></path>
+                <circle cx="112" cy="96" r="48" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="32"></circle>
+                <circle cx="400" cy="416" r="48" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="32"></circle>
+                <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
+                  d="M256 96h84a60 60 0 0160 60v212m-145 48h-84a60 60 0 01-60-60V144"></path>
+              </svg><br>
+              Comparison
+            </ng-template>
+            <div class="">
+              <div class="card my-5">
+                <div class="card-header">
+                  <div class="d-flex justify-content-between">
+                    <div class="flex-item">
+                      <h4 class="fw-bold">
+                        Compare Options
+                      </h4>
+                    </div>
+                    <div class="flex-item">
+                      <h4 class="fw-bold">
+                        <span style="color: var(--appColor2);">Reference No:{{ premiumDetails?.RequestReferenceNo}}</span>
+                      </h4>
+                    </div>
+                  </div>
 
-                    </form>
-                </mat-step>
-                <mat-step [stepControl]="personalForm">
-                    <form [formGroup]="personalForm">
-                        <ng-template matStepLabel>
-                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
-                                height="30" width="30" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z">
-                                </path>
-                            </svg><br>
-                            Personal Information
-                        </ng-template>
-                        <div class="">
-                            <div class="card my-5">
-                                <div class="card-header">
-                                    <h4 class="fw-bold">
-                                        Personal Details
-                                    </h4>
-                                </div>
-                                <div class="card-body">
-                                    <app-personal-inform [personalForm]="personalForm"></app-personal-inform>
+                </div>
+                <div class="card-body">
+                  <app-comparison (buyPolicyResponse)="onGetBuyPolicyResponse($event)"
+                    [claimInfoLicense]="claimInfoLicense" [claimInfoChassis]="claimInfoChassis"
+                    [offenseInformation]="offenseInformation" [licenseInformation]="licenseInformation"
+                    [GetQuoteDetailsResponse]="GetQuoteDetailsResponse" [premiumDetails]="premiumDetails" [vehicleInfoForm]="vehicleInfoForm">
 
-                                </div>
-                                <div class="card-footer text-center">
-                                    <button type="button" class="btn vision-blue-btn mx-2" matStepperPrevious>
-                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                            viewBox="0 0 16 16" class="pe-2" height="30" width="30"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z">
-                                            </path>
-                                        </svg>
-                                        Back
-                                    </button>
-                                    <button type="button" class="btn vision-orange-btn mx-2" matStepperPrevious>
-                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                            viewBox="0 0 1024 1024" class="pe-2" height="30" width="30"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M505.7 661a8 8 0 0 0 12.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z">
-                                            </path>
-                                        </svg>
-                                        Download Form
-                                    </button>
-                                    <button type="button" class="btn vision-blue-btn mx-2" matStepperPrevious>
-                                        Make Payment
-                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                            viewBox="0 0 16 16" class="ps-2" height="30" width="30"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z">
-                                            </path>
-                                        </svg>
-                                    </button>
+                  </app-comparison>
+                </div>
+                <div class="card-footer text-center">
+                  <button type="button" class="btn vision-blue-btn mx-2" matStepperPrevious>
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="pe-2"
+                      height="30" width="30" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z">
+                      </path>
+                    </svg>
+                    Back
+                  </button>
 
-                                </div>
-                            </div>
-                        </div>
+                </div>
+              </div>
+            </div>
 
-                    </form>
-                </mat-step>
-            </mat-stepper>
-        </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="personalForm">
+          <form [formGroup]="personalForm">
+            <ng-template matStepLabel>
+              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="30" width="30"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z">
+                </path>
+              </svg><br>
+              Personal Information
+            </ng-template>
+            <div class="">
+              <div class="card my-5">
+                <div class="card-header">
+                  <div class="d-flex justify-content-between">
+                    <div class="flex-item">
+                      <h4 class="fw-bold">
+                        Personal Details
+                      </h4>
+                    </div>
+                    <div class="flex-item">
+                      <h4 class="fw-bold">
+                       <span style="color: var(--appColor1);">Quote No:{{ buyPolicyDetails?.data?.QuoteNo}}</span>
+                      </h4>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="card-body">
+                  <ng-container>
+                    <app-personal-inform
+                    [buyPolicyDetails]="buyPolicyDetails"
+                    [vehicleInfoForm]="vehicleInfoForm"
+                    [GetQuoteDetailsResponse]="GetQuoteDetailsResponse"
+                    (addDriverForm)="addDriverForm()"
+                    (deleteDriverForm)="removeDriverForm($event)"
+                    [personalForm]="personalForm" >
+                    </app-personal-inform>
+                  </ng-container>
+                </div>
+
+              </div>
+            </div>
+
+          </form>
+        </mat-step>
+      </mat-stepper>
     </div>
+  </div>
 </div>

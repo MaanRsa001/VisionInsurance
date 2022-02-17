@@ -15,63 +15,280 @@ import * as Mydatas from '../../app-config.json';
 export class FormStepperService {
   public AppConfig: any = (Mydatas as any).default;
   public ApiUrl: any = this.AppConfig.ApiUrl;
+  public ApiUrl2: any = this.AppConfig.ApiUrl2;
+  public ApiUrl3: any = this.AppConfig.ApiUrl3;
+
 
   public Token: any;
-  constructor(private http: HttpClient, private router: Router) {}
+  result: any[] = [];
+  constructor(private http: HttpClient, private router: Router) { }
 
   getToken() {
-    // this.authService.isloggedToken.subscribe((event: any) => {
-    //   if (event != undefined && event != '' && event != null) {
-    //     this.Token = event;
-    //   } else {
-    //     this.Token = sessionStorage.getItem('UserToken');
-    //   }
-    // });
     return 'dmlzaW9ubW90b3I6dmlzaW9ubW90b3JAMTIzIw==';
+
   }
 
-  async onGetLossType(UrlLink: any): Promise<Observable<any[]>> {
-    let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Basic ' + this.getToken());
-    return await this.http
-      .get<any>(this.ApiUrl + UrlLink, { headers: headers })
-      .pipe(retry(1), catchError(this.handleError));
-  }
-  async onGetSurveyorList(UrlLink: any): Promise<Observable<any[]>> {
-    console.log(UrlLink);
-    let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Basic ' + this.getToken());
-    return await this.http
-      .get<any>(this.ApiUrl + UrlLink, { headers: headers })
-      .pipe(retry(1), catchError(this.handleError));
+
+
+   onGetOffenseInfo(GetQuoteDetails: any) {
+    let UrlLink = `${this.ApiUrl}offenseinfo/search/${GetQuoteDetails?.drivCivilCrNo}`;
+    let ReqObj = {};
+    return this.onParallelPostMethod(UrlLink, ReqObj);
   }
 
-  async onPostMethodAsync(
-    UrlLink: any,
-    ReqObj: any
-  ): Promise<Observable<any[]>> {
+   onGetClaimInfoByLicense(GetQuoteDetails: any) {
+    let UrlLink = `${this.ApiUrl}claiminfobylicence/${GetQuoteDetails?.drivCivilCrNo}`;
+    let ReqObj = {};
+    return this.onParallelPostMethod(UrlLink, ReqObj);
+  }
+
+   onGetClaimInfoByChassis(GetQuoteDetailsResponse: any) {
+    let UrlLink = `${this.ApiUrl}claiminfobylicence/${GetQuoteDetailsResponse?.chassisnumber}`;
+    let ReqObj = {};
+    return this.onParallelPostMethod(UrlLink, ReqObj);
+  }
+   onGetVehicleInformation(GetQuoteDetailsResponse: any) {
+    let UrlLink = `${this.ApiUrl}chassisnoDet/${GetQuoteDetailsResponse?.chassisnumber}`;
+    return this.onParallelGetMethod(UrlLink,);
+  }
+
+   onGetLicenseInfo(GetQuoteDetails: any) {
+    let UrlLink = `${this.ApiUrl}licenseinfo/search/${GetQuoteDetails?.drivCivilCrNo}`;
+    let ReqObj = {};
+    return this.onParallelPostMethod(UrlLink, ReqObj);
+  }
+
+
+  async onGetNcdList(GetQuoteDetailsResponse: any) {
+    let ReqObj = {
+      PvParam1: `01/01/${GetQuoteDetailsResponse?.makeyear}`,
+    };
+    let UrlLink = `${this.ApiUrl}dropdown/claim/bonus`;
+    let response = (await this.onPostMethodAsync(UrlLink, ReqObj))
+      .toPromise()
+      .then((res) => {
+        return res;
+      })
+      .catch((err) => { })
+    return response;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  async onPostMethodAsync(UrlLink: any, ReqObj: any): Promise<Observable<any[]>> {
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', 'Basic ' + this.getToken());
     return await this.http
-      .post<any>(this.ApiUrl + UrlLink, ReqObj, { headers: headers })
+      .post<any>(UrlLink, ReqObj, { headers: headers })
       .pipe(retry(1), catchError(this.handleError));
   }
   async onGetMethodAsync(UrlLink: any): Promise<Observable<any[]>> {
-    console.log(UrlLink);
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', 'Basic ' + this.getToken());
     return await this.http
-      .get<any>(this.ApiUrl + UrlLink, { headers: headers })
+      .get<any>(UrlLink, { headers: headers })
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  onPostMethod(UrlLink: any, ReqObj: any): Observable<any[]> {
-    console.log(ReqObj);
+  onPostMethodSync(UrlLink: string, ReqObj: any): Observable<any[]> {
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', 'Basic ' + this.getToken());
     return this.http
+      .post<any>(UrlLink, ReqObj, { headers: headers })
+      .pipe(map(data => { return data }), catchError(this.handleError));
+  }
+
+
+
+
+
+
+
+  onGetSumInsured(UrlLink: string, ReqObj: any): Observable<any[]> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Basic ' + 'dmlzaW9ubW90b3I6dmlzaW9ubW90b3JAMTIzIw==');
+    return this.http
       .post<any>(this.ApiUrl + UrlLink, ReqObj, { headers: headers })
       .pipe(retry(1), catchError(this.handleError));
+  }
+
+
+  onUploadDocument(UrlLink: string, ReqObj: any): Observable<any[]> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Basic ' + 'dmlzaW9uOnZpc2lvbkAxMjMj');
+    return this.http
+      .post<any>(this.ApiUrl2 + UrlLink, ReqObj, { headers: headers })
+      .pipe(retry(1), catchError(this.handleError));
+  }
+
+
+
+
+
+
+
+
+  onParallelPostMethod(UrlLink: string, ReqObj: any): Observable<any[]> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Basic ' + this.getToken());
+    return this.http
+      .post<any>(UrlLink, ReqObj, { headers: headers })
+      .pipe(map(data => { return data }), catchError(this.handleError));
+  }
+  onParallelGetMethod(UrlLink: string): Observable<any[]> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Basic ' + this.getToken());
+    return this.http
+      .get<any>(UrlLink, { headers: headers })
+      .pipe(map(data => { return data }), catchError(this.handleError));
   }
 
   // Error handling

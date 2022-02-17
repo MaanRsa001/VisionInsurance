@@ -1,0 +1,41 @@
+
+<div class="d-flex justify-content-between">
+  <div>
+    <h2 mat-dialog-title>
+      Comprehensive Coverage Details
+    </h2>
+  </div>
+  <div>
+     <button type="button" class="btn vision-blue-btn mx-2" mat-dialog-close>
+      Close
+     </button>
+  </div>
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="documentcard mb-5">
+    <ng-container *ngFor="let item of dialogData?.DocumentUploadDetails">
+    <div class="card">
+      <div class="card-header text-center">{{item?.DocumentDesc}}</div>
+      <input style="display: none;" type="file" (change)="onUploadDocument($event,item)" #fileInput>
+      <div class="card-body" appDragDrop (fileDropped)="onFileDropped($event,item)" id="showImage{{item.DocId}}" (click)="fileInput.click()"
+      style="
+      background-image: url({{item?.Base64url}});
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;"
+      >
+          <div class="center">
+                Click or Drag
+          </div>
+      </div>
+      <div class="card-footer text-center" *ngIf="item?.Base64url != null">
+        <button class="btn" (click)="onDeleteImg(item)">Remove</button>
+      </div>
+    </div>
+  </ng-container>
+
+  </div>
+
+</mat-dialog-content>
+
+
