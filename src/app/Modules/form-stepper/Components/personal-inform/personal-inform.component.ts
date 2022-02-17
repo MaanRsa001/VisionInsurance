@@ -40,12 +40,7 @@ export class PersonalInformComponent implements OnInit, OnChanges,AfterContentIn
   public AdditionDriversArray!: any[];
   public AdditionDriverObj: any = {};
   public gender: any = '1';
-  public nationalityList: any[] = [];
-  public cityList: any[] = [];
-  public orangeCardList: any[] = [];
-  public TitleList: any[] = [];
   public documentList: any = {};
-  public wilayatList: any[] = [];
   public coverageDetails: any;
   public GetQuoteDetails: any;
 
@@ -57,7 +52,6 @@ export class PersonalInformComponent implements OnInit, OnChanges,AfterContentIn
   public maxDate = new Date();
   public minDate = new Date();
 
-  public occupationList: any[] = [];
   public upLoadedDocument:any={};
   public AppConfig: any = (Mydatas as any).default;
   public ApiUrl: any = this.AppConfig.ApiUrl;
@@ -69,6 +63,14 @@ export class PersonalInformComponent implements OnInit, OnChanges,AfterContentIn
     'Code': '',
     'Description_en': '-Select-'
   }
+  public nationalityList= [this.pleaseSelect];
+  public cityList=[this.pleaseSelect];
+  public orangeCardList=[this.pleaseSelect];
+  public wilayatList= [this.pleaseSelect];
+  public occupationList = [this.pleaseSelect];
+
+  public TitleList: any[] = [];
+
   constructor(
     private formStepperService: FormStepperService,
     private personalInformService: PersonalInformService,
@@ -96,13 +98,7 @@ export class PersonalInformComponent implements OnInit, OnChanges,AfterContentIn
     this.isAddon = this.buyPolicyDetails?.isAddon;
     this.isAddonData = this.buyPolicyDetails?.isAddonData;
     this.onCheckisAdditionalDriver();
-    // this.TitleList.unshift(this.pleaseSelect);
-    // this.occupationList.push(this.pleaseSelect);
-    // this.wilayatList.push(this.pleaseSelect);
-    // this.nationalityList.push(this.pleaseSelect);
-    // this.cityList.push(this.pleaseSelect);
-    // this.orangeCardList.push(this.pleaseSelect);
-    // console.log(this.TitleList,this.occupationList);
+
   }
   ngOnInit(): void {
     this.onInitialFetchData();
@@ -118,16 +114,21 @@ export class PersonalInformComponent implements OnInit, OnChanges,AfterContentIn
   }
 
   async onInitialFetchData() {
-    this.occupationList = (await this.personalInformService.onGetOccupationList()) || [];
-    this.nationalityList = (await this.personalInformService.onGetNationalityList()) || [];
-    this.orangeCardList = (await this.personalInformService.onGetOrangeCardList()) || [];
-    this.wilayatList = (await this.personalInformService.onGetWilayatList()) || [];
+    let occupationList = (await this.personalInformService.onGetOccupationList()) || [];
+    let nationalityList = (await this.personalInformService.onGetNationalityList()) || [];
+    let orangeCardList = (await this.personalInformService.onGetOrangeCardList()) || [];
+    let wilayatList = (await this.personalInformService.onGetWilayatList()) || [];
+    this.occupationList.push(...occupationList)
+    this.nationalityList.push(...nationalityList)
+    this.orangeCardList.push(...orangeCardList)
+    this.wilayatList.push(...wilayatList)
     this.TitleList = [
       { Code: '', Description_en: '-Select-' },
       { Code: '1', Description_en: 'Mr' },
       { Code: '2', Description_en: 'Ms' },
       { Code: '3', Description_en: 'M/s' },
     ];
+    console.log(this.TitleList,this.occupationList);
 
   }
   ngAfterContentInit(): void {
@@ -136,7 +137,9 @@ export class PersonalInformComponent implements OnInit, OnChanges,AfterContentIn
 
 
   async onNationalityChange(event: any) {
-    this.cityList = (await this.personalInformService.onGetCityList(event)) || [];
+    let cityList = (await this.personalInformService.onGetCityList(event)) || [];
+    this.cityList=[];
+    this.cityList.push(this.pleaseSelect,...cityList);
   }
 
   get f() { return this.personalForm.controls; }

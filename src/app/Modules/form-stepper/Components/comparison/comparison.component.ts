@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { FormStepperService } from '../../form-stepper.service';
 import { AddonCoversComponent } from '../addon-covers/addon-covers.component';
 import * as Mydatas from '../../../../app-config.json';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-comparison',
@@ -49,7 +50,7 @@ export class ComparisonComponent implements OnInit, OnChanges {
     private comparisonService:ComparisonService,
     private spinner: NgxSpinnerService,
     private errorService: ErrorService,
-
+    private router:Router,
   ) { }
 
   ngOnInit(): void {
@@ -299,6 +300,9 @@ export class ComparisonComponent implements OnInit, OnChanges {
   }
 
   CompanyWillContact() {
+    console.log("h")
+    this.router.navigate(['/Motor/Grid/ReferralPending']);
+
     Swal.fire(
       `Underwriter Will Contact You`,
       `Vision Insurance`,

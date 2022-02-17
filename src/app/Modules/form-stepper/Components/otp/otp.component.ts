@@ -88,7 +88,7 @@ export class OtpComponent implements OnInit {
     );
     let ReqObj = {
       ProductId: '65',
-      Otp: this.otpDetails.Otp,
+      Otp: this.otpForm.controls['otp'].value,
       RequestReferenceNo: this.dialogData.RequestReferenceNo,
       MobileNo: this.GetQuoteDetails.MobileNo,
       OtpId: this.otpDetails.OtpId,

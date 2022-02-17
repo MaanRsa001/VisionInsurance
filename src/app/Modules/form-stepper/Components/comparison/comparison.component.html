@@ -209,7 +209,7 @@
             <div class="card mycard comprehensive mb-2">
               <div class="card-header d-flex justify-content-between">
                 <div>{{item.XDataName}}</div>
-                <div style="color: var(--appColor2);">OMR {{item?.FinalPremium}}</div>
+                <div style="color: var(--appColor2);">OMR {{item?. MinPreStatus=="Y"? item?.MinPremium:item?.FinalAmount}}</div>
 
               </div>
               <div class="card-body">
@@ -280,7 +280,7 @@
                               d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z">
                           </path>
                       </svg>
-                      Buy Now {{item?.FinalAmount}}
+                      Buy Now {{item?. MinPreStatus=="Y"? item?.MinPremium:item?.FinalAmount}}
                   </button>
                   <button  type="button" *ngIf="item?.Buypolicyyn == 'N'" class="btn vision-orange-btn mx-2" (click)="CompanyWillContact()">
                     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="pe-2"

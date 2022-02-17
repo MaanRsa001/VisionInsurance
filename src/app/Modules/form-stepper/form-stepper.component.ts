@@ -109,6 +109,7 @@ export class FormStepperComponent implements OnInit, OnChanges {
       policyDate: ['', Validators.required],
       orangeCard: ['', Validators.required],
       City: ['', Validators.required],
+      emailid:[''],
       Title: ['', Validators.required],
       Nationality: ['', Validators.required],
       isAdditionalDriver:['N'],

@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpInterceptorService } from './HttpInterceptors/http-interceptor.service';
+import { PaymentStatusComponent } from './Modules/payment-status/payment-status.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HttpInterceptorService } from './HttpInterceptors/http-interceptor.serv
     HomeLayoutComponent,
     NavbarComponent,
     FooterComponent,
+    PaymentStatusComponent,
 
   ],
   imports: [

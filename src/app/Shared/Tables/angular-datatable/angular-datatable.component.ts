@@ -18,13 +18,11 @@ export class AngularDatatableComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.tableData);
     this.onLoadDataTable(this.tableData);
 
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.tableData);
     this.onLoadDataTable(this.tableData);
   }
 

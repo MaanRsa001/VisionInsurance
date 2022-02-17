@@ -14,6 +14,7 @@ export class ExistQuoteWqComponent implements OnInit {
   public ApiUrl3: any = this.AppConfig.ApiUrl3;
   public tableData:any;
   dtOptions: any = {};
+  public GetQuoteDetails :any
   constructor(
     private quotesService:QuotesService
   ) {}
@@ -23,10 +24,11 @@ export class ExistQuoteWqComponent implements OnInit {
   }
 
   onGetQuotesList(){
+    this.GetQuoteDetails = JSON.parse(sessionStorage.getItem('GetQuoteDetails') || '{}');
     let UrlLink =`${this.ApiUrl2}getExistingDataWQ`;
     let ReqObj ={
       "applicationid": "1",
-      "loginid": "95222222",
+      "loginid": this.GetQuoteDetails?.MobileNo,
       "branchcode": "31",
       "subusertype": "",
       "usertype": "User",
